@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  db:
+      image: mysql:5.7.22
+      restart: unless-stopped
+      environment:
+          MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+          MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+          MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
+          MYSQL_USER: ${DB_USERNAME:-username}
+      volumes:
+          - ./.docker/mysql/dbdata:/var/lib/mysql
+      ports:
+          - "3366:3306"
+      networks:
+          - laravel
+networks:
+    laravel:
+        driver: bridge

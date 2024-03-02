@@ -1,0 +1,65 @@
+.cartao {
+    width: 200px;
+    height: 80px;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #000;
+    float: left;
+    position: relative;
+    padding: 5px;
+    margin: 2px;
+}
+
+.ocupado {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ff0000;
+}
+
+.chamando {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ff0000;
+    animation: piscar 1s linear infinite;
+}
+
+.offiline {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(55 65 81);
+}
+
+.pausado {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(249 115 22);
+}
+
+.bg-custom-light-gray {
+  background-color: #1b58961a;
+}
+
+
+@keyframes piscar {
+    50% {
+        opacity: 0;
+    }
+}
+
+.disponivel {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #04ea04;
+}
+
+.icone-posicao {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
