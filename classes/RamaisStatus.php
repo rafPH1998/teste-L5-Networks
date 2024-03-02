@@ -14,7 +14,7 @@ class RamaisStatus {
       $this->info_ramais = array();
     }
 
-    public function getStatus() {
+    public function getStatusRamais() {
       $this->parseFilas();
       $this->parseRamais();
       return json_encode($this->info_ramais);
@@ -70,5 +70,5 @@ class RamaisStatus {
 }
 
 $ramaisStatus = new RamaisStatus();
-$infoRamais = $ramaisStatus->getStatus();
+$infoRamais = $ramaisStatus->getStatusRamais();
 echo $infoRamais;
