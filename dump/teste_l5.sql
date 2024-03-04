@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `ramais`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ramais` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `ip` int(11) DEFAULT NULL,
+  `host` varchar(255) DEFAULT NULL,
   `ramal` varchar(255) DEFAULT NULL,
   `nome` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `ramais` (
 
 LOCK TABLES `ramais` WRITE;
 /*!40000 ALTER TABLE `ramais` DISABLE KEYS */;
-INSERT INTO `ramais` VALUES (1,NULL,'7000','7000','ocupado',1),(2,NULL,'7001','7001','chamando',1),(3,NULL,'7004','7002','offiline',1),(4,NULL,'7003','7003','offiline',0),(5,NULL,'7002','7004','pausado',0);
+INSERT INTO `ramais` VALUES (1,'181.219.125.7','7000','7000','ocupado',1),(2,'181.219.125.7','7001','7001','chamando',1),(3,'181.219.125.7','7004','7002','offiline',1),(4,NULL,'7003','7003','offiline',0),(5,NULL,'7002','7004','pausado',0);
 /*!40000 ALTER TABLE `ramais` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-03 23:59:37
+-- Dump completed on 2024-03-04 14:07:29
