@@ -6,8 +6,8 @@ function atualizarStatusDosRamais() {
           $('#cartoes').empty(); 
 
           for(let i in data){
-              let statusClass = data[i].status === "" ? 'bg-custom-light-gray' : '';
-              let iconClass = data[i].status === 'pausado' ? 'pausado' : (data[i].status === "" ? 'offiline' : data[i].status);
+              let statusClass = data[i].online === false  ? 'bg-custom-light-gray' : '';
+              let iconClass = data[i].status === 'pausado' ? 'pausado' : (data[i].status === "" && data[i].online === false ? 'offiline' : data[i].status);
 
               $('#cartoes').append(`<div class="cartao mt-5 ${statusClass}">
                                       <div>${data[i].nome}</div>
