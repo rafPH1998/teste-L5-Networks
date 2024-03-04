@@ -30,6 +30,16 @@ Na pasta dump, segue o arquivo do dump do banco de dados
 dump/teste_l5.sql
 ```
 
+Informações para acesso ao banco de dados
+
+```sh
+porta: 3306
+host: 127.0.0.1
+user: root
+senha: root
+db_name: 'teste_l5';
+```
+
 O projeto está rodando na porta 3306: "http://localhost:3006"
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
