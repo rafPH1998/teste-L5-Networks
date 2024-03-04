@@ -24,11 +24,3 @@ O teste também contará com algumas atividades obrigatórias:
 5. Estes arquivos poderão ser alterados apenas para teste do AJAX  
 6. Ao concluir o teste, deverá ser encaminhado um arquivo .zip contendo todo o código, dump da base de dados e instruções de instalação e a lista das melhorias aplicadas.  
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-### Para rodar o banco de dados
-Após clonar o projeto, rode o comando e terá o banco de dados ativo OBS: caso tiver o docker instalado na máquina
-
-```sh
-docker compose up -d
-```

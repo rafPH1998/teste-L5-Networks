@@ -9,21 +9,24 @@ class RamaisStatus {
   private $status_ramais;
   private $info_ramais;
 
-  public function __construct() {
+  public function __construct() 
+  {
     $this->ramais = file('../lib/ramais');
     $this->filas = file('../lib/filas');
     $this->status_ramais = array();
     $this->info_ramais = array();
   }
 
-  public function getStatusRamais() {
+  public function getStatusRamais() 
+  {
     $this->parseFilas();
     $this->parseRamais();
     $this->updateRamais();
     return json_encode($this->info_ramais);
   }
 
-  private function parseFilas() {
+  private function parseFilas() 
+  {
     foreach($this->filas as $linha) {
       if(strstr($linha, 'SIP/')) {
         if(strstr($linha, '(Ring)')) {
@@ -42,33 +45,41 @@ class RamaisStatus {
     }
   }
 
-  private function parseRamalStatus($linha, $status) {
+  private function parseRamalStatus($linha, $status) 
+  {
     $linha = explode(' ', trim($linha));
     list($tech, $ramal) = explode('/', $linha[0]);
     $this->status_ramais[$ramal] = array('status' => $status);
   }
 
-  private function parseRamais() {
+  private function parseRamais() 
+  {
+
     foreach($this->ramais as $linha) {
       $arr = array_values(array_filter(explode(' ', $linha)));
       if(trim($arr[1]) == '(Unspecified)' && trim($arr[4]) == 'UNKNOWN') {
-        $this->parseInfoRamal($arr[0], false);
+
+        list($name, $username) = explode('/', $arr[0]); 
+        $this->info_ramais[$name] = array(
+          'nome' => $name,
+          'ramal' => $username,
+          'online' => false,
+          'host' => null,
+          'status' => $this->status_ramais[$name]['status']
+        );
+
       }
       if(trim($arr[5]) == "OK") {
-        $this->parseInfoRamal($arr[0], true);
+        list($name, $username) = explode('/', $arr[0]);
+        $this->info_ramais[$name] = array(
+          'nome' => $name,
+          'ramal' => $username,
+          'host' => trim($arr[1]),
+          'online' => true,
+          'status' => $this->status_ramais[$name]['status']
+        );
       }
     }
-  }
-
-  private function parseInfoRamal($nomeRamal, $online) {
-    list($name, $username) = explode('/', $nomeRamal);
-    $status = isset($this->status_ramais[$name]) ? $this->status_ramais[$name]['status'] : '';
-    $this->info_ramais[$name] = array(
-      'nome' => $name,
-      'ramal' => $username,
-      'online' => $online,
-      'status' => $status
-    );
   }
 
   public function updateRamais()
@@ -85,11 +96,13 @@ class RamaisStatus {
         "UPDATE ramais 
           SET 
         status = :status, 
-        online = :online
+        online = :online,
+        host = :host
           WHERE ramal = :ramal"
       );
 
       $query->bindParam(':status', $status);
+      $query->bindParam(':host', $info['host']);
       $query->bindParam(':online', $online, PDO::PARAM_INT);
       $query->bindParam(':ramal', $info['ramal']);
       $query->execute();
